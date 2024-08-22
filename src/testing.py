@@ -40,5 +40,18 @@ class TestMapping(unittest.TestCase):
         tag_matches, port_protocol_matches = parse_log_data("tests/flow-log.csv", parse_protocol_map("src/protocol-numbers.csv"), parse_lookup("tests/lookup.csv"))
         write_results("tests/results.csv", tag_matches, port_protocol_matches)
 
+    # General testing function 
+    # Pass in the log data filename, lookup filename, and results filename we want to write to
+    def test_mapping(self, log_data_filename = "tests/flow-log.csv", lookup_filename = "tests/lookup.csv", results_filename = "tests/results.csv"):
+        tag_matches, port_protocol_matches = parse_log_data(log_data_filename, parse_protocol_map("src/protocol-numbers.csv"), parse_lookup(lookup_filename))
+        write_results(results_filename, tag_matches, port_protocol_matches) 
+
+
 if __name__ == "__main__":
     unittest.main()
+    testing = TestMapping() 
+
+    flow_log_filename = ""
+    lookup_filename = ""
+    results_filename = ""
+    testing.test_mapping_general(flow_log_filename, lookup_filename, results_filename)
